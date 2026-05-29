@@ -81,24 +81,32 @@ const lessons = [
   {
     id: "capacity",
     name: "Capacity",
-    hint: "mL, L",
+    hint: "mL, cm³, L, dm³",
     icon: "M8 3h8v6l3 6a4 4 0 0 1-4 6H9a4 4 0 0 1-4-6l3-6V3zM8 13h8",
     title: "Capacity Units",
     question: "How do we describe how much liquid something can hold?",
     intro:
-      "Capacity measures liquids like water, milk, and juice. Small amounts use milliliters, and bottles or jugs often use liters.",
+      "Capacity measures liquids like water, milk, and juice. Milliliters match cubic centimeters, liters match cubic decimeters, and dessert recipes often use fluid ounces, cups, pints, quarts, and gallons.",
     mission:
-      "Run a pretend juice stand: use milliliters for each cup and liters for the big bottle behind the counter.",
+      "Run a dessert kitchen: measure cream in cups, chocolate sauce in fluid ounces, and big party batches in quarts or gallons.",
     color: "#2b8fbf",
     units: [
       { label: "milliliter mL", value: 1 },
+      { label: "cubic centimeter cm³", value: 1 },
+      { label: "fluid ounce fl oz", value: 29.5735295625 },
+      { label: "cup cup", value: 236.5882365 },
+      { label: "pint pt", value: 473.176473 },
+      { label: "quart qt", value: 946.352946 },
+      { label: "gallon gal", value: 3785.411784 },
       { label: "liter L", value: 1000 },
+      { label: "cubic decimeter dm³", value: 1000 },
     ],
     examples: [
-      ["5 mL", "About one small teaspoon."],
-      ["250 mL", "A small carton of milk."],
-      ["1 L", "The same as 1000 milliliters."],
-      ["2 L", "A large bottle of juice or soda."],
+      ["1 mL = 1 cm³", "A milliliter takes the same space as one cubic centimeter."],
+      ["1 L = 1 dm³", "A liter takes the same space as one cubic decimeter."],
+      ["1 L = 1000 cm³", "One liter equals 1000 cubic centimeters."],
+      ["1 cup = 8 fl oz", "A dessert recipe might use one cup of milk."],
+      ["1 gal = 4 qt", "A big party drink batch can be measured in gallons."],
     ],
     quizzes: [
       {
@@ -107,9 +115,39 @@ const lessons = [
         answer: "milliliters",
       },
       {
+        prompt: "How many fluid ounces are in 1 cup?",
+        options: ["2 fl oz", "8 fl oz", "16 fl oz"],
+        answer: "8 fl oz",
+      },
+      {
+        prompt: "How many cups are in 1 pint?",
+        options: ["2 cups", "4 cups", "8 cups"],
+        answer: "2 cups",
+      },
+      {
+        prompt: "How many pints are in 1 quart?",
+        options: ["2 pints", "4 pints", "8 pints"],
+        answer: "2 pints",
+      },
+      {
+        prompt: "How many quarts are in 1 gallon?",
+        options: ["2 quarts", "4 quarts", "8 quarts"],
+        answer: "4 quarts",
+      },
+      {
         prompt: "How many milliliters are in 1 liter?",
         options: ["10 milliliters", "100 milliliters", "1000 milliliters"],
         answer: "1000 milliliters",
+      },
+      {
+        prompt: "How many cubic decimeters are in 1 liter?",
+        options: ["1 dm³", "10 dm³", "1000 dm³"],
+        answer: "1 dm³",
+      },
+      {
+        prompt: "How many cubic centimeters are in 1 liter?",
+        options: ["100 cm³", "1000 cm³", "10,000 cm³"],
+        answer: "1000 cm³",
       },
     ],
   },
@@ -274,6 +312,46 @@ const lessons = [
       },
     ],
   },
+  {
+    id: "speed",
+    name: "Speed",
+    hint: "km/h, m/s",
+    icon: "M4 16h7M4 12h11M4 8h15M17 16l3-4-3-4",
+    title: "Speed Units",
+    question: "How do we describe how fast something moves?",
+    intro:
+      "Speed tells us how much distance is traveled in a certain time. Cars often use kilometers per hour, while running, cycling, and science examples often use meters per second.",
+    mission:
+      "Be a race coach: compare a car's speed in km/h with a runner's speed in m/s.",
+    color: "#0f9fb4",
+    units: [
+      { label: "meter per second m/s", value: 1 },
+      { label: "kilometer per hour km/h", value: 0.2777777777777778 },
+    ],
+    examples: [
+      ["1 km/h", "The same as about 0.2778 m/s."],
+      ["1 m/s", "The same as 3.6 km/h."],
+      ["30 km/h", "A slow road speed for a vehicle."],
+      ["5 m/s", "A fast playground running speed."],
+    ],
+    quizzes: [
+      {
+        prompt: "How many km/h are in 1 m/s?",
+        options: ["0.36 km/h", "3.6 km/h", "36 km/h"],
+        answer: "3.6 km/h",
+      },
+      {
+        prompt: "Which unit is often used for car speed?",
+        options: ["km/h", "mL", "cm²"],
+        answer: "km/h",
+      },
+      {
+        prompt: "Which unit can describe how many meters a runner moves each second?",
+        options: ["m/s", "TB", "°C"],
+        answer: "m/s",
+      },
+    ],
+  },
 ];
 
 const zhLessons = {
@@ -352,22 +430,30 @@ const zhLessons = {
   },
   capacity: {
     name: "容量",
-    hint: "毫升、升",
+    hint: "毫升、立方厘米、升、立方分米",
     title: "容量单位",
     question: "怎样描述能装多少液体？",
     intro:
-      "容量用来测量水、牛奶、果汁等液体。少量液体用毫升，瓶子和水壶常用升。",
+      "容量用来测量水、牛奶、果汁等液体。毫升和立方厘米一样大，升和立方分米一样大，甜品食谱里还常见液量盎司、杯、品脱、夸脱和加仑。",
     mission:
-      "开一家假装果汁店：每杯果汁用毫升，大瓶果汁用升。",
+      "开一家甜品厨房：奶油可以用 cup，巧克力酱可以用 fl oz，大份派对饮料可以用 quart 或 gallon。",
     units: [
       { label: "毫升 mL", value: 1 },
+      { label: "立方厘米 cm³", value: 1 },
+      { label: "液量盎司 fl oz", value: 29.5735295625 },
+      { label: "杯 cup", value: 236.5882365 },
+      { label: "品脱 pt", value: 473.176473 },
+      { label: "夸脱 qt", value: 946.352946 },
+      { label: "加仑 gal", value: 3785.411784 },
       { label: "升 L", value: 1000 },
+      { label: "立方分米 dm³", value: 1000 },
     ],
     examples: [
-      ["5 mL", "大约是一小勺水。"],
-      ["250 mL", "一盒小牛奶常见的容量。"],
-      ["1 L", "等于 1000 毫升。"],
-      ["2 L", "一大瓶果汁或汽水常见的容量。"],
+      ["1 mL = 1 cm³", "1 毫升和 1 立方厘米占的空间一样大。"],
+      ["1 L = 1 dm³", "1 升和 1 立方分米占的空间一样大。"],
+      ["1 L = 1000 cm³", "1 升等于 1000 立方厘米。"],
+      ["1 cup = 8 fl oz", "甜品食谱里可能会用 1 cup 牛奶。"],
+      ["1 gal = 4 qt", "大份派对饮料可以用 gallon。"],
     ],
     quizzes: [
       {
@@ -376,9 +462,39 @@ const zhLessons = {
         answer: "毫升",
       },
       {
+        prompt: "1 cup 等于多少 fl oz？",
+        options: ["2 fl oz", "8 fl oz", "16 fl oz"],
+        answer: "8 fl oz",
+      },
+      {
+        prompt: "1 pint 等于多少 cups？",
+        options: ["2 cups", "4 cups", "8 cups"],
+        answer: "2 cups",
+      },
+      {
+        prompt: "1 quart 等于多少 pints？",
+        options: ["2 pints", "4 pints", "8 pints"],
+        answer: "2 pints",
+      },
+      {
+        prompt: "1 gallon 等于多少 quarts？",
+        options: ["2 quarts", "4 quarts", "8 quarts"],
+        answer: "4 quarts",
+      },
+      {
         prompt: "1 升等于多少毫升？",
         options: ["10 毫升", "100 毫升", "1000 毫升"],
         answer: "1000 毫升",
+      },
+      {
+        prompt: "1 升等于多少立方分米？",
+        options: ["1 dm³", "10 dm³", "1000 dm³"],
+        answer: "1 dm³",
+      },
+      {
+        prompt: "1 升等于多少立方厘米？",
+        options: ["100 cm³", "1000 cm³", "10,000 cm³"],
+        answer: "1000 cm³",
       },
     ],
   },
@@ -526,6 +642,43 @@ const zhLessons = {
         prompt: "哪个单位最大？",
         options: ["Byte", "MB", "TB"],
         answer: "TB",
+      },
+    ],
+  },
+  speed: {
+    name: "速度",
+    hint: "km/h、m/s",
+    title: "速度单位",
+    question: "怎样描述物体运动得有多快？",
+    intro:
+      "速度告诉我们一段时间内走了多远。汽车常用千米每小时，跑步、骑车和科学例子常用米每秒。",
+    mission:
+      "当一名比赛教练：用 km/h 比较汽车速度，用 m/s 比较跑步速度。",
+    units: [
+      { label: "米每秒 m/s", value: 1 },
+      { label: "千米每小时 km/h", value: 0.2777777777777778 },
+    ],
+    examples: [
+      ["1 km/h", "大约等于 0.2778 m/s。"],
+      ["1 m/s", "等于 3.6 km/h。"],
+      ["30 km/h", "车辆比较慢的道路速度。"],
+      ["5 m/s", "操场上比较快的跑步速度。"],
+    ],
+    quizzes: [
+      {
+        prompt: "1 m/s 等于多少 km/h？",
+        options: ["0.36 km/h", "3.6 km/h", "36 km/h"],
+        answer: "3.6 km/h",
+      },
+      {
+        prompt: "汽车速度常用哪个单位？",
+        options: ["km/h", "mL", "cm²"],
+        answer: "km/h",
+      },
+      {
+        prompt: "哪个单位可以表示每秒跑了多少米？",
+        options: ["m/s", "TB", "°C"],
+        answer: "m/s",
       },
     ],
   },
@@ -732,6 +885,21 @@ function renderScene(lesson) {
         <rect x="332" y="228" width="112" height="62" rx="8" fill="#ffffff" stroke="#f5b63d" stroke-width="5"/>
         <text x="364" y="267" font-size="25" font-weight="700" fill="#26313d">TB</text>
       </svg>`,
+    speed: `
+      <svg viewBox="0 0 520 320" role="img" aria-label="Road speed and runner speed">
+        <rect width="520" height="320" fill="#f2fbfd"/>
+        <path d="M44 236h432" stroke="#5d6875" stroke-width="58" stroke-linecap="round"/>
+        <path d="M64 236h392" stroke="#ffffff" stroke-width="6" stroke-dasharray="30 22" stroke-linecap="round"/>
+        <rect x="92" y="142" width="150" height="58" rx="16" fill="${color}"/>
+        <rect x="124" y="112" width="86" height="46" rx="12" fill="#8fd1df"/>
+        <circle cx="128" cy="204" r="18" fill="#26313d"/>
+        <circle cx="210" cy="204" r="18" fill="#26313d"/>
+        <text x="294" y="132" font-size="36" font-weight="700" fill="#26313d">km/h</text>
+        <path d="M330 184c34-32 72-32 106 0" fill="none" stroke="#f5b63d" stroke-width="9" stroke-linecap="round"/>
+        <circle cx="370" cy="166" r="16" fill="#e85c4a"/>
+        <path d="M366 184l-22 38M374 184l32 36" stroke="#26313d" stroke-width="8" stroke-linecap="round"/>
+        <text x="344" y="270" font-size="34" font-weight="700" fill="#26313d">m/s</text>
+      </svg>`,
   };
   sceneArt.innerHTML = scenes[lesson.id];
 }
@@ -741,20 +909,22 @@ function renderPictureCards(id) {
     en: {
       length: ["Desk map", "Classroom path", "Park trip"],
       weight: ["Snack bag", "Fruit basket", "Delivery truck"],
-      capacity: ["Juice cup", "Water bottle", "Party jug"],
+      capacity: ["Measuring cup", "Cream cup", "Party gallon"],
       time: ["Fast timer", "Sprint race", "Game clock"],
       temperature: ["Cold morning", "Warm room", "Hot day"],
       area: ["Sticker square", "Notebook page", "Big park"],
       storage: ["Tiny text", "Photo album", "Video library"],
+      speed: ["Car speed", "Runner speed", "Bike ride"],
     },
     zh: {
       length: ["桌面地图", "教室路线", "公园路程"],
       weight: ["零食袋", "水果篮", "送货卡车"],
-      capacity: ["果汁杯", "水瓶", "聚会大壶"],
+      capacity: ["量杯", "奶油杯", "派对加仑"],
       time: ["快速计时", "短跑比赛", "游戏时钟"],
       temperature: ["寒冷早晨", "温暖房间", "炎热天气"],
       area: ["贴纸方格", "本子页面", "大公园"],
       storage: ["小文字", "照片相册", "视频资料库"],
+      speed: ["汽车速度", "跑步速度", "骑车速度"],
     },
   };
   const cards = {
@@ -792,6 +962,11 @@ function renderPictureCards(id) {
       `<rect x="48" y="28" width="68" height="56" rx="7" fill="#fff" stroke="#4f86f7" stroke-width="5"/><text x="68" y="64" font-size="24" font-weight="700" fill="#26313d">B</text>`,
       `<rect x="36" y="24" width="92" height="66" rx="8" fill="#eef5ff" stroke="#4f86f7" stroke-width="5"/><circle cx="62" cy="48" r="12" fill="#f5b63d"/><path d="M44 80l30-24 18 15 16-12 20 21z" fill="#70c6a3"/>`,
       `<rect x="34" y="30" width="96" height="58" rx="8" fill="#26313d"/><path d="M54 46l46 14-46 14z" fill="#fff"/><text x="102" y="82" font-size="14" font-weight="700" fill="#fff">TB</text>`,
+    ],
+    speed: [
+      `<rect x="28" y="54" width="76" height="30" rx="8" fill="#0f9fb4"/><rect x="44" y="36" width="42" height="22" rx="6" fill="#8fd1df"/><circle cx="46" cy="86" r="8" fill="#26313d"/><circle cx="88" cy="86" r="8" fill="#26313d"/><text x="108" y="72" font-size="18" font-weight="700" fill="#26313d">km/h</text>`,
+      `<circle cx="76" cy="38" r="12" fill="#e85c4a"/><path d="M72 52l-20 34M82 54l32 30M74 58c24-22 46-22 66 0" stroke="#26313d" stroke-width="7" stroke-linecap="round" fill="none"/><text x="30" y="30" font-size="18" font-weight="700" fill="#26313d">m/s</text>`,
+      `<circle cx="58" cy="78" r="16" fill="none" stroke="#26313d" stroke-width="6"/><circle cx="112" cy="78" r="16" fill="none" stroke="#26313d" stroke-width="6"/><path d="M58 78l24-30 30 30M82 48h24" stroke="#0f9fb4" stroke-width="6" stroke-linecap="round" fill="none"/>`,
     ],
   };
 
