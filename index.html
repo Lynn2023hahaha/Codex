@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Unit Lab for Kids</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <aside class="sidebar" aria-label="Unit categories">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 48 48">
+              <path d="M8 32h32v8H8z" />
+              <path d="M12 8h6v24h-6zM22 14h6v18h-6zM32 20h6v12h-6z" />
+            </svg>
+          </div>
+          <div>
+            <h1>Unit Lab</h1>
+            <p>Look, convert, practice</p>
+          </div>
+        </div>
+        <nav id="unitTabs" class="unit-tabs"></nav>
+      </aside>
+
+      <section class="lesson-panel" aria-live="polite">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Today's Lesson</p>
+            <h2 id="lessonTitle"></h2>
+          </div>
+          <div class="topbar-actions">
+            <div class="language-switch" aria-label="Language">
+              <button class="language-button active" type="button" data-lang="en">EN</button>
+              <button class="language-button" type="button" data-lang="zh">中文</button>
+            </div>
+            <div class="score-card" aria-label="Practice score">
+              <span>Score</span>
+              <strong id="scoreValue">0</strong>
+            </div>
+          </div>
+        </header>
+
+        <section class="visual-zone">
+          <div class="scene" id="sceneArt" aria-hidden="true"></div>
+          <div class="lesson-copy">
+            <h3 id="lessonQuestion"></h3>
+            <p id="lessonIntro"></p>
+            <div id="examples" class="example-grid"></div>
+          </div>
+        </section>
+
+        <section class="converter" aria-labelledby="converterTitle">
+          <div class="section-heading">
+            <h3 id="converterTitle">Conversion Blocks</h3>
+            <p>Type a number and see how it changes into another unit.</p>
+          </div>
+          <div class="converter-row">
+            <label>
+              <span>Number</span>
+              <input id="convertAmount" type="number" min="0" value="1" />
+            </label>
+            <label>
+              <span>From</span>
+              <select id="fromUnit"></select>
+            </label>
+            <label>
+              <span>To</span>
+              <select id="toUnit"></select>
+            </label>
+            <output id="convertResult" class="convert-result"></output>
+          </div>
+        </section>
+
+        <section class="practice" aria-labelledby="practiceTitle">
+          <div class="section-heading">
+            <h3 id="practiceTitle">Quick Practice</h3>
+            <p>Pick the best answer.</p>
+          </div>
+          <div class="quiz-card">
+            <p id="quizPrompt" class="quiz-prompt"></p>
+            <div id="quizOptions" class="quiz-options"></div>
+            <p id="quizFeedback" class="feedback" role="status"></p>
+            <button id="nextQuiz" class="next-button" type="button">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M13 5l7 7-7 7M5 12h15" />
+              </svg>
+              Next Question
+            </button>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
