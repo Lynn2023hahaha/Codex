@@ -278,6 +278,36 @@ select {
   line-height: 1.55;
 }
 
+.picture-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.picture-card {
+  min-height: 118px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.picture-card svg {
+  display: block;
+  width: 100%;
+  height: 86px;
+}
+
+.picture-card span {
+  display: block;
+  padding: 8px 10px 10px;
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
 .example-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -491,6 +521,7 @@ select {
 
   .unit-tabs,
   .example-grid,
+  .picture-grid,
   .quiz-options {
     grid-template-columns: 1fr;
   }

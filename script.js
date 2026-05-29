@@ -188,23 +188,24 @@ const lessons = [
   {
     id: "area",
     name: "Area",
-    hint: "cm², m², ha",
+    hint: "cm², dm², m², ha",
     icon: "M5 5h14v14H5zM5 12h14M12 5v14",
     title: "Area Units",
     question: "How do we describe how much space a flat surface covers?",
     intro:
-      "Area measures flat surfaces like desks, floors, playgrounds, and fields. Small cards use square centimeters, rooms often use square meters, and large land areas can use hectares.",
+      "Area measures flat surfaces like desks, floors, playgrounds, and fields. Small cards use square centimeters, notebooks can use square decimeters, rooms often use square meters, and large land areas can use hectares.",
     mission:
       "Design a playground: use square meters for the slide area and hectares when you imagine a giant park.",
     color: "#7c62d1",
     units: [
       { label: "square centimeter cm²", value: 1 },
+      { label: "square decimeter dm²", value: 100 },
       { label: "square meter m²", value: 10000 },
       { label: "hectare ha", value: 100000000 },
     ],
     examples: [
       ["1 cm²", "A tiny square that is 1 cm on each side."],
-      ["100 cm²", "A square that is 10 cm on each side."],
+      ["1 dm²", "A square that is 1 dm on each side, the same as 100 cm²."],
       ["1 m²", "A big square that is 1 m on each side."],
       ["1 ha", "10,000 square meters, useful for parks and farms."],
     ],
@@ -213,6 +214,11 @@ const lessons = [
         prompt: "Which unit is best for measuring a classroom floor?",
         options: ["square meters", "milliliters", "seconds"],
         answer: "square meters",
+      },
+      {
+        prompt: "How many square centimeters are in 1 square decimeter?",
+        options: ["10 cm²", "100 cm²", "1000 cm²"],
+        answer: "100 cm²",
       },
       {
         prompt: "What is the area of a square that is 1 meter on each side?",
@@ -442,21 +448,22 @@ const zhLessons = {
   },
   area: {
     name: "面积",
-    hint: "平方厘米、平方米、公顷",
+    hint: "平方厘米、平方分米、平方米、公顷",
     title: "面积单位",
     question: "怎样描述一个平面有多大？",
     intro:
-      "面积用来测量桌面、地板、操场和农田这样的平面。小卡片用平方厘米，房间用平方米，大块土地可以用公顷。",
+      "面积用来测量桌面、地板、操场和农田这样的平面。小卡片用平方厘米，本子页面可以用平方分米，房间用平方米，大块土地可以用公顷。",
     mission:
       "设计一个游乐场：滑梯区域用平方米，想象一个大公园时可以用公顷。",
     units: [
       { label: "平方厘米 cm²", value: 1 },
+      { label: "平方分米 dm²", value: 100 },
       { label: "平方米 m²", value: 10000 },
       { label: "公顷 ha", value: 100000000 },
     ],
     examples: [
       ["1 cm²", "边长 1 厘米的小正方形。"],
-      ["100 cm²", "边长 10 厘米的正方形。"],
+      ["1 dm²", "边长 1 分米的正方形，等于 100 平方厘米。"],
       ["1 m²", "边长 1 米的大正方形。"],
       ["1 ha", "等于 10,000 平方米，常用于公园和农场。"],
     ],
@@ -465,6 +472,11 @@ const zhLessons = {
         prompt: "量教室地面面积，最适合用哪个单位？",
         options: ["平方米", "毫升", "秒"],
         answer: "平方米",
+      },
+      {
+        prompt: "1 平方分米等于多少平方厘米？",
+        options: ["10 cm²", "100 cm²", "1000 cm²"],
+        answer: "100 cm²",
       },
       {
         prompt: "边长 1 米的正方形面积是多少？",
@@ -571,6 +583,7 @@ const lessonQuestion = document.querySelector("#lessonQuestion");
 const lessonIntro = document.querySelector("#lessonIntro");
 const missionTitle = document.querySelector("#missionTitle");
 const lessonMission = document.querySelector("#lessonMission");
+const pictureCards = document.querySelector("#pictureCards");
 const examples = document.querySelector("#examples");
 const sceneArt = document.querySelector("#sceneArt");
 const convertAmount = document.querySelector("#convertAmount");
@@ -723,6 +736,80 @@ function renderScene(lesson) {
   sceneArt.innerHTML = scenes[lesson.id];
 }
 
+function renderPictureCards(id) {
+  const labels = {
+    en: {
+      length: ["Desk map", "Classroom path", "Park trip"],
+      weight: ["Snack bag", "Fruit basket", "Delivery truck"],
+      capacity: ["Juice cup", "Water bottle", "Party jug"],
+      time: ["Fast timer", "Sprint race", "Game clock"],
+      temperature: ["Cold morning", "Warm room", "Hot day"],
+      area: ["Sticker square", "Notebook page", "Big park"],
+      storage: ["Tiny text", "Photo album", "Video library"],
+    },
+    zh: {
+      length: ["桌面地图", "教室路线", "公园路程"],
+      weight: ["零食袋", "水果篮", "送货卡车"],
+      capacity: ["果汁杯", "水瓶", "聚会大壶"],
+      time: ["快速计时", "短跑比赛", "游戏时钟"],
+      temperature: ["寒冷早晨", "温暖房间", "炎热天气"],
+      area: ["贴纸方格", "本子页面", "大公园"],
+      storage: ["小文字", "照片相册", "视频资料库"],
+    },
+  };
+  const cards = {
+    length: [
+      `<path d="M24 62h92v16H24z" fill="#ffd56a" stroke="#b78012" stroke-width="3"/><path d="M40 28h80l28 16-28 16H40z" fill="#3977e3"/><path d="M120 28l28 16-28 16z" fill="#f4c58e"/>`,
+      `<path d="M20 76c38-42 78-42 120 0" fill="none" stroke="#3977e3" stroke-width="8" stroke-linecap="round"/><circle cx="28" cy="76" r="9" fill="#f5b63d"/><circle cx="140" cy="76" r="9" fill="#1f9c73"/>`,
+      `<path d="M24 74h116" stroke="#8eb76e" stroke-width="10"/><path d="M36 74c18-34 38-34 56 0s38 34 56 0" fill="none" stroke="#3977e3" stroke-width="5"/><circle cx="124" cy="42" r="13" fill="#f5b63d"/>`,
+    ],
+    weight: [
+      `<rect x="44" y="30" width="72" height="50" rx="8" fill="#f5b63d"/><circle cx="62" cy="50" r="7" fill="#fff"/><circle cx="92" cy="62" r="7" fill="#fff"/>`,
+      `<path d="M48 72h76l-10 18H58z" fill="#8b5e3c"/><circle cx="70" cy="54" r="18" fill="#e85c4a"/><circle cx="98" cy="52" r="16" fill="#1f9c73"/>`,
+      `<rect x="24" y="48" width="88" height="34" rx="6" fill="#4f86f7"/><rect x="112" y="60" width="34" height="22" fill="#3977e3"/><circle cx="52" cy="86" r="8" fill="#26313d"/><circle cx="120" cy="86" r="8" fill="#26313d"/>`,
+    ],
+    capacity: [
+      `<path d="M52 28h54l-8 62H60z" fill="#fff" stroke="#2b8fbf" stroke-width="4"/><path d="M60 58h38l-4 32H64z" fill="#73c7ef"/>`,
+      `<rect x="64" y="20" width="42" height="72" rx="12" fill="#2b8fbf"/><rect x="72" y="34" width="26" height="44" rx="6" fill="#e7f8ff"/>`,
+      `<path d="M46 28h68l14 62H32z" fill="#fff" stroke="#2b8fbf" stroke-width="4"/><path d="M42 60h76l7 30H35z" fill="#73c7ef"/>`,
+    ],
+    time: [
+      `<circle cx="82" cy="56" r="34" fill="#fff" stroke="#d18b1f" stroke-width="6"/><path d="M82 56V34M82 56l18 12" stroke="#26313d" stroke-width="5" stroke-linecap="round"/>`,
+      `<path d="M36 82c34-44 70-44 104 0" fill="none" stroke="#d18b1f" stroke-width="7"/><circle cx="52" cy="72" r="10" fill="#3977e3"/><circle cx="116" cy="72" r="10" fill="#e85c4a"/>`,
+      `<rect x="38" y="30" width="88" height="52" rx="8" fill="#26313d"/><text x="56" y="64" font-size="22" font-weight="700" fill="#fff">12:00</text>`,
+    ],
+    temperature: [
+      `<path d="M44 70c28-20 54-20 82 0" fill="none" stroke="#6cbfe0" stroke-width="7"/><circle cx="64" cy="44" r="12" fill="#dfefff"/>`,
+      `<rect x="74" y="22" width="20" height="48" rx="10" fill="#fff" stroke="#9aa7b5" stroke-width="4"/><circle cx="84" cy="76" r="18" fill="#e85c4a"/><rect x="80" y="44" width="8" height="34" fill="#e85c4a"/>`,
+      `<circle cx="84" cy="54" r="24" fill="#f5b63d"/><path d="M84 16v16M84 76v16M46 54H30M138 54h-16" stroke="#f5b63d" stroke-width="6" stroke-linecap="round"/>`,
+    ],
+    area: [
+      `<rect x="48" y="30" width="58" height="58" fill="#fff" stroke="#7c62d1" stroke-width="5"/><path d="M48 59h58M77 30v58" stroke="#d9d0f5" stroke-width="4"/>`,
+      `<rect x="38" y="24" width="88" height="66" rx="6" fill="#fff" stroke="#7c62d1" stroke-width="5"/><path d="M54 42h56M54 58h56M54 74h40" stroke="#d9d0f5" stroke-width="5"/>`,
+      `<path d="M24 88h120V40H24z" fill="#cdeecb"/><path d="M36 76h96" stroke="#7c62d1" stroke-width="5"/><circle cx="50" cy="54" r="12" fill="#1f9c73"/><circle cx="112" cy="54" r="12" fill="#1f9c73"/>`,
+    ],
+    storage: [
+      `<rect x="48" y="28" width="68" height="56" rx="7" fill="#fff" stroke="#4f86f7" stroke-width="5"/><text x="68" y="64" font-size="24" font-weight="700" fill="#26313d">B</text>`,
+      `<rect x="36" y="24" width="92" height="66" rx="8" fill="#eef5ff" stroke="#4f86f7" stroke-width="5"/><circle cx="62" cy="48" r="12" fill="#f5b63d"/><path d="M44 80l30-24 18 15 16-12 20 21z" fill="#70c6a3"/>`,
+      `<rect x="34" y="30" width="96" height="58" rx="8" fill="#26313d"/><path d="M54 46l46 14-46 14z" fill="#fff"/><text x="102" y="82" font-size="14" font-weight="700" fill="#fff">TB</text>`,
+    ],
+  };
+
+  pictureCards.innerHTML = cards[id]
+    .map(
+      (svg, index) => `
+        <div class="picture-card">
+          <svg viewBox="0 0 164 108" role="img" aria-label="${labels[currentLang][id][index]}">
+            <rect width="164" height="108" fill="#f7fafc"/>
+            ${svg}
+          </svg>
+          <span>${labels[currentLang][id][index]}</span>
+        </div>
+      `,
+    )
+    .join("");
+}
+
 function renderLesson() {
   const lesson = localizedLesson();
   applyUiText();
@@ -730,6 +817,7 @@ function renderLesson() {
   lessonQuestion.textContent = lesson.question;
   lessonIntro.textContent = lesson.intro;
   lessonMission.textContent = lesson.mission;
+  renderPictureCards(activeLesson.id);
   examples.innerHTML = lesson.examples
     .map(([amount, text]) => `<div class="example"><strong>${amount}</strong><span>${text}</span></div>`)
     .join("");
