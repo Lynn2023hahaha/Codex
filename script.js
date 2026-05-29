@@ -81,23 +81,23 @@ const lessons = [
   {
     id: "capacity",
     name: "Capacity",
-    hint: "mL, cm³, L, dm³",
+    hint: "mL, cm³, fl oz, cup, L",
     icon: "M8 3h8v6l3 6a4 4 0 0 1-4 6H9a4 4 0 0 1-4-6l3-6V3zM8 13h8",
     title: "Capacity Units",
     question: "How do we describe how much liquid something can hold?",
     intro:
-      "Capacity measures liquids like water, milk, and juice. Milliliters match cubic centimeters, liters match cubic decimeters, and dessert recipes often use fluid ounces, cups, pints, quarts, and gallons.",
+      "Capacity measures liquids like water, milk, and juice. Milliliters match cubic centimeters, liters match cubic decimeters, and US dessert recipes often use fluid ounces, cups, pints, quarts, and gallons.",
     mission:
       "Run a dessert kitchen: measure cream in cups, chocolate sauce in fluid ounces, and big party batches in quarts or gallons.",
     color: "#2b8fbf",
     units: [
       { label: "milliliter mL", value: 1 },
       { label: "cubic centimeter cm³", value: 1 },
-      { label: "fluid ounce fl oz", value: 29.5735295625 },
-      { label: "cup cup", value: 236.5882365 },
-      { label: "pint pt", value: 473.176473 },
-      { label: "quart qt", value: 946.352946 },
-      { label: "gallon gal", value: 3785.411784 },
+      { label: "US fluid ounce fl oz", value: 29.5735295625 },
+      { label: "US cup c", value: 236.5882365 },
+      { label: "US pint pt", value: 473.176473 },
+      { label: "US quart qt", value: 946.352946 },
+      { label: "US gallon gal", value: 3785.411784 },
       { label: "liter L", value: 1000 },
       { label: "cubic decimeter dm³", value: 1000 },
     ],
@@ -105,32 +105,32 @@ const lessons = [
       ["1 mL = 1 cm³", "A milliliter takes the same space as one cubic centimeter."],
       ["1 L = 1 dm³", "A liter takes the same space as one cubic decimeter."],
       ["1 L = 1000 cm³", "One liter equals 1000 cubic centimeters."],
-      ["1 cup = 8 fl oz", "A dessert recipe might use one cup of milk."],
-      ["1 gal = 4 qt", "A big party drink batch can be measured in gallons."],
+      ["1 US cup = 8 fl oz", "A dessert recipe might use one cup of milk."],
+      ["1 US gal = 4 qt", "A big party drink batch can be measured in gallons."],
     ],
     quizzes: [
       {
-        prompt: "Which unit is best for measuring a cup of milk?",
+        prompt: "Which unit is best for measuring a tiny spoon of vanilla extract?",
         options: ["milliliters", "kilograms", "kilometers"],
         answer: "milliliters",
       },
       {
-        prompt: "How many fluid ounces are in 1 cup?",
+        prompt: "How many fluid ounces are in 1 US cup?",
         options: ["2 fl oz", "8 fl oz", "16 fl oz"],
         answer: "8 fl oz",
       },
       {
-        prompt: "How many cups are in 1 pint?",
+        prompt: "How many US cups are in 1 US pint?",
         options: ["2 cups", "4 cups", "8 cups"],
         answer: "2 cups",
       },
       {
-        prompt: "How many pints are in 1 quart?",
+        prompt: "How many US pints are in 1 US quart?",
         options: ["2 pints", "4 pints", "8 pints"],
         answer: "2 pints",
       },
       {
-        prompt: "How many quarts are in 1 gallon?",
+        prompt: "How many US quarts are in 1 US gallon?",
         options: ["2 quarts", "4 quarts", "8 quarts"],
         answer: "4 quarts",
       },
@@ -804,6 +804,9 @@ function renderTabs() {
 }
 
 function renderScene(lesson) {
+  sceneArt.innerHTML = `<img class="scene-image" src="assets/unit-world.png" alt="">`;
+  return;
+
   const color = lesson.color;
   const scenes = {
     length: `
@@ -1004,6 +1007,7 @@ function renderLesson() {
 
 function renderConverter() {
   const lesson = localizedLesson();
+  convertAmount.value = "1";
   fromUnit.innerHTML = lesson.units
     .map((unit, index) => `<option value="${index}">${unit.label}</option>`)
     .join("");
