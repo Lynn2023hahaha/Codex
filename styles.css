@@ -257,6 +257,27 @@ select {
   line-height: 1.7;
 }
 
+.mission-card {
+  display: grid;
+  gap: 6px;
+  margin-top: 16px;
+  padding: 14px;
+  border: 1px solid #f0dca9;
+  border-radius: 8px;
+  background: #fff9e8;
+}
+
+.mission-card strong {
+  color: #9a6613;
+  font-size: 14px;
+  text-transform: uppercase;
+}
+
+.mission-card span {
+  color: #54432a;
+  line-height: 1.55;
+}
+
 .example-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));

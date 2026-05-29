@@ -8,6 +8,8 @@ const lessons = [
     question: "How do we describe how long something is?",
     intro:
       "Length helps us compare height, distance, and size. Tiny things can be measured in millimeters, books in centimeters, short classroom objects in decimeters, rooms in meters, and long trips in kilometers.",
+    mission:
+      "Build a mini treasure map: use centimeters for the desk path, meters for the classroom, and kilometers for the trip to the park.",
     color: "#3977e3",
     units: [
       { label: "millimeter mm", value: 1 },
@@ -49,6 +51,8 @@ const lessons = [
     question: "How do we describe how heavy something is?",
     intro:
       "Weight tells us whether something is light or heavy. Snacks and pencils use grams, backpacks and fruit use kilograms, and huge trucks use metric tons.",
+    mission:
+      "Pack a picnic basket: grams help compare cookies, kilograms help check fruit, and metric tons belong to delivery trucks.",
     color: "#1f9c73",
     units: [
       { label: "gram g", value: 1 },
@@ -83,6 +87,8 @@ const lessons = [
     question: "How do we describe how much liquid something can hold?",
     intro:
       "Capacity measures liquids like water, milk, and juice. Small amounts use milliliters, and bottles or jugs often use liters.",
+    mission:
+      "Run a pretend juice stand: use milliliters for each cup and liters for the big bottle behind the counter.",
     color: "#2b8fbf",
     units: [
       { label: "milliliter mL", value: 1 },
@@ -116,6 +122,8 @@ const lessons = [
     question: "How do we describe how long something takes?",
     intro:
       "Time units help us measure moments. A microsecond is extremely tiny, a millisecond is still very quick, a second can count a clap, and minutes or hours help us plan the day.",
+    mission:
+      "Be a race judge: microseconds and milliseconds decide fast computer timing, seconds time a sprint, and minutes time a game.",
     color: "#d18b1f",
     units: [
       { label: "microsecond µs", value: 1 },
@@ -152,6 +160,8 @@ const lessons = [
     question: "How do we describe hot and cold?",
     intro:
       "Temperature tells us whether something is cold, warm, or hot. Celsius is common in everyday life. Water freezes near 0 °C, and body temperature is about 37 °C.",
+    mission:
+      "Be a weather reporter: choose clothes for a cold 5 °C morning, a warm 25 °C afternoon, or a hot 35 °C day.",
     color: "#e85c4a",
     units: [
       { label: "degree Celsius °C", value: 1 },
@@ -184,6 +194,8 @@ const lessons = [
     question: "How do we describe how much space a flat surface covers?",
     intro:
       "Area measures flat surfaces like desks, floors, playgrounds, and fields. Small cards use square centimeters, rooms often use square meters, and large land areas can use hectares.",
+    mission:
+      "Design a playground: use square meters for the slide area and hectares when you imagine a giant park.",
     color: "#7c62d1",
     units: [
       { label: "square centimeter cm²", value: 1 },
@@ -214,6 +226,48 @@ const lessons = [
       },
     ],
   },
+  {
+    id: "storage",
+    name: "Digital Storage",
+    hint: "B, MB, GB, TB",
+    icon: "M6 4h12v16H6zM9 8h6M9 12h6M9 16h3",
+    title: "Digital Storage Units",
+    question: "How do we describe how much data a device can hold?",
+    intro:
+      "Digital storage tells us how much information fits in a device. A byte is tiny, megabytes fit photos and songs, gigabytes fit apps and videos, and terabytes fit huge collections.",
+    mission:
+      "Plan a tablet for a trip: count bytes for tiny text, megabytes for photos, gigabytes for games, and terabytes for a big family video library.",
+    color: "#4f86f7",
+    units: [
+      { label: "byte B", value: 1 },
+      { label: "megabyte MB", value: 1000000 },
+      { label: "gigabyte GB", value: 1000000000 },
+      { label: "terabyte TB", value: 1000000000000 },
+    ],
+    examples: [
+      ["1 B", "Enough for one tiny piece of computer information."],
+      ["1 MB", "About one small photo or a short audio clip."],
+      ["1 GB", "About 1000 megabytes, useful for apps and videos."],
+      ["1 TB", "About 1000 gigabytes, useful for lots of videos."],
+    ],
+    quizzes: [
+      {
+        prompt: "Which unit is best for measuring storage on a laptop?",
+        options: ["gigabytes", "liters", "degrees Celsius"],
+        answer: "gigabytes",
+      },
+      {
+        prompt: "How many megabytes are in 1 gigabyte in this lesson?",
+        options: ["10 MB", "100 MB", "1000 MB"],
+        answer: "1000 MB",
+      },
+      {
+        prompt: "Which unit is bigger?",
+        options: ["byte", "megabyte", "terabyte"],
+        answer: "terabyte",
+      },
+    ],
+  },
 ];
 
 const zhLessons = {
@@ -224,6 +278,8 @@ const zhLessons = {
     question: "怎样描述东西有多长？",
     intro:
       "长度帮助我们比较高矮、远近和大小。很小的东西用毫米，书本用厘米，短一些的教室物品用分米，房间用米，长途距离用千米。",
+    mission:
+      "画一张寻宝地图：桌面路线用厘米，教室距离用米，去公园的路程用千米。",
     units: [
       { label: "毫米 mm", value: 1 },
       { label: "厘米 cm", value: 10 },
@@ -262,6 +318,8 @@ const zhLessons = {
     question: "怎样描述东西有多重？",
     intro:
       "重量告诉我们物体轻还是重。零食和铅笔用克，书包和水果用千克，大卡车常用吨。",
+    mission:
+      "准备一次野餐：饼干用克来比较，水果用千克来称，大货车才会用吨。",
     units: [
       { label: "克 g", value: 1 },
       { label: "千克 kg", value: 1000 },
@@ -293,6 +351,8 @@ const zhLessons = {
     question: "怎样描述能装多少液体？",
     intro:
       "容量用来测量水、牛奶、果汁等液体。少量液体用毫升，瓶子和水壶常用升。",
+    mission:
+      "开一家假装果汁店：每杯果汁用毫升，大瓶果汁用升。",
     units: [
       { label: "毫升 mL", value: 1 },
       { label: "升 L", value: 1000 },
@@ -323,6 +383,8 @@ const zhLessons = {
     question: "怎样描述事情用了多久？",
     intro:
       "时间单位帮助我们测量一瞬间或一整天。微秒非常短，毫秒也很快，秒可以数一次拍手，分钟和小时帮助我们安排一天。",
+    mission:
+      "当一次比赛裁判：微秒和毫秒用于很快的计时，秒用来记录短跑，分钟用来记录一场游戏。",
     units: [
       { label: "微秒 µs", value: 1 },
       { label: "毫秒 ms", value: 1000 },
@@ -356,6 +418,8 @@ const zhLessons = {
     question: "怎样描述冷和热？",
     intro:
       "温度告诉我们冷、暖、热。生活中常用摄氏度。水在 0 °C 附近结冰，人体体温大约是 37 °C。",
+    mission:
+      "当一名天气播报员：5 °C 早晨要穿暖，25 °C 很舒服，35 °C 就很热。",
     units: [{ label: "摄氏度 °C", value: 1 }],
     examples: [
       ["0 °C", "水接近结冰。"],
@@ -383,6 +447,8 @@ const zhLessons = {
     question: "怎样描述一个平面有多大？",
     intro:
       "面积用来测量桌面、地板、操场和农田这样的平面。小卡片用平方厘米，房间用平方米，大块土地可以用公顷。",
+    mission:
+      "设计一个游乐场：滑梯区域用平方米，想象一个大公园时可以用公顷。",
     units: [
       { label: "平方厘米 cm²", value: 1 },
       { label: "平方米 m²", value: 10000 },
@@ -412,6 +478,45 @@ const zhLessons = {
       },
     ],
   },
+  storage: {
+    name: "数字存储",
+    hint: "B、MB、GB、TB",
+    title: "数字存储单位",
+    question: "怎样描述设备能存多少数据？",
+    intro:
+      "数字存储告诉我们手机、平板、电脑能放多少信息。Byte 很小，MB 常用来表示照片和音频，GB 常用来表示应用和视频，TB 可以放很多很多文件。",
+    mission:
+      "为一次旅行准备平板电脑：小文字用 Byte，照片用 MB，游戏用 GB，全家视频库用 TB。",
+    units: [
+      { label: "字节 B", value: 1 },
+      { label: "兆字节 MB", value: 1000000 },
+      { label: "吉字节 GB", value: 1000000000 },
+      { label: "太字节 TB", value: 1000000000000 },
+    ],
+    examples: [
+      ["1 B", "可以表示很小的一点电脑信息。"],
+      ["1 MB", "大约可以是一张小照片或一小段音频。"],
+      ["1 GB", "约等于 1000 MB，常用于应用和视频。"],
+      ["1 TB", "约等于 1000 GB，可以存很多视频。"],
+    ],
+    quizzes: [
+      {
+        prompt: "量一台笔记本电脑的存储空间，最适合用哪个单位？",
+        options: ["GB", "升", "摄氏度"],
+        answer: "GB",
+      },
+      {
+        prompt: "本课中 1 GB 等于多少 MB？",
+        options: ["10 MB", "100 MB", "1000 MB"],
+        answer: "1000 MB",
+      },
+      {
+        prompt: "哪个单位最大？",
+        options: ["Byte", "MB", "TB"],
+        answer: "TB",
+      },
+    ],
+  },
 };
 
 const uiText = {
@@ -423,6 +528,7 @@ const uiText = {
     score: "Score",
     converterTitle: "Conversion Blocks",
     converterHelp: "Type a number and see how it changes into another unit.",
+    missionTitle: "Life Mission",
     number: "Number",
     from: "From",
     to: "To",
@@ -441,6 +547,7 @@ const uiText = {
     score: "得分",
     converterTitle: "换算积木",
     converterHelp: "输入一个数字，看看它能换成多少其他单位。",
+    missionTitle: "生活任务",
     number: "数字",
     from: "从",
     to: "到",
@@ -462,6 +569,8 @@ const unitTabs = document.querySelector("#unitTabs");
 const lessonTitle = document.querySelector("#lessonTitle");
 const lessonQuestion = document.querySelector("#lessonQuestion");
 const lessonIntro = document.querySelector("#lessonIntro");
+const missionTitle = document.querySelector("#missionTitle");
+const lessonMission = document.querySelector("#lessonMission");
 const examples = document.querySelector("#examples");
 const sceneArt = document.querySelector("#sceneArt");
 const convertAmount = document.querySelector("#convertAmount");
@@ -495,7 +604,7 @@ function applyUiText() {
   document.querySelector(".score-card span").textContent = text.score;
   document.querySelector("#converterTitle").textContent = text.converterTitle;
   document.querySelector(".converter .section-heading p").textContent = text.converterHelp;
-  document.querySelector('label[for="convertAmount"] span');
+  missionTitle.textContent = text.missionTitle;
   document.querySelector(".converter-row label:nth-child(1) span").textContent = text.number;
   document.querySelector(".converter-row label:nth-child(2) span").textContent = text.from;
   document.querySelector(".converter-row label:nth-child(3) span").textContent = text.to;
@@ -594,6 +703,22 @@ function renderScene(lesson) {
         <rect x="162" y="110" width="98" height="103" fill="${color}" opacity=".2"/>
         <path d="M162 110h98v103h-98z" fill="none" stroke="${color}" stroke-width="6"/>
       </svg>`,
+    storage: `
+      <svg viewBox="0 0 520 320" role="img" aria-label="Tablet and storage blocks">
+        <rect width="520" height="320" fill="#f4f8ff"/>
+        <rect x="128" y="54" width="184" height="230" rx="22" fill="#26313d"/>
+        <rect x="146" y="78" width="148" height="178" rx="8" fill="#eef5ff"/>
+        <circle cx="220" cy="270" r="7" fill="#8ea5c6"/>
+        <rect x="170" y="104" width="100" height="18" rx="5" fill="${color}"/>
+        <rect x="170" y="138" width="76" height="18" rx="5" fill="#70c6a3"/>
+        <rect x="170" y="172" width="116" height="18" rx="5" fill="#f5b63d"/>
+        <rect x="342" y="82" width="78" height="52" rx="8" fill="#ffffff" stroke="${color}" stroke-width="5"/>
+        <text x="363" y="116" font-size="24" font-weight="700" fill="#26313d">MB</text>
+        <rect x="350" y="152" width="92" height="60" rx="8" fill="#ffffff" stroke="#70c6a3" stroke-width="5"/>
+        <text x="374" y="189" font-size="25" font-weight="700" fill="#26313d">GB</text>
+        <rect x="332" y="228" width="112" height="62" rx="8" fill="#ffffff" stroke="#f5b63d" stroke-width="5"/>
+        <text x="364" y="267" font-size="25" font-weight="700" fill="#26313d">TB</text>
+      </svg>`,
   };
   sceneArt.innerHTML = scenes[lesson.id];
 }
@@ -604,6 +729,7 @@ function renderLesson() {
   lessonTitle.textContent = lesson.title;
   lessonQuestion.textContent = lesson.question;
   lessonIntro.textContent = lesson.intro;
+  lessonMission.textContent = lesson.mission;
   examples.innerHTML = lesson.examples
     .map(([amount, text]) => `<div class="example"><strong>${amount}</strong><span>${text}</span></div>`)
     .join("");
