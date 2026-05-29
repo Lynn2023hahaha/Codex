@@ -197,23 +197,29 @@ const lessons = [
   {
     id: "temperature",
     name: "Temperature",
-    hint: "°C",
+    hint: "°C, °F",
     icon: "M14 14.8V5a2 2 0 0 0-4 0v9.8a4 4 0 1 0 4 0zM12 17v-5",
     title: "Temperature Units",
     question: "How do we describe hot and cold?",
     intro:
-      "Temperature tells us whether something is cold, warm, or hot. Celsius is common in everyday life. Water freezes near 0 °C, and body temperature is about 37 °C.",
+      "Temperature tells us whether something is cold, warm, or hot. Celsius and Fahrenheit are both used in daily life. Water freezes at 0 °C or 32 °F, and body temperature is about 37 °C or 98.6 °F.",
     mission:
       "Be a weather reporter: choose clothes for a cold 5 °C morning, a warm 25 °C afternoon, or a hot 35 °C day.",
     color: "#e85c4a",
     units: [
       { label: "degree Celsius °C", value: 1 },
+      {
+        label: "degree Fahrenheit °F",
+        value: 1,
+        toBase: (amount) => ((amount - 32) * 5) / 9,
+        fromBase: (amount) => (amount * 9) / 5 + 32,
+      },
     ],
     examples: [
-      ["0 °C", "Water is close to freezing."],
+      ["0 °C = 32 °F", "Water is close to freezing."],
       ["25 °C", "A comfortable room temperature."],
-      ["37 °C", "About normal body temperature."],
-      ["100 °C", "Water is close to boiling."],
+      ["37 °C = 98.6 °F", "About normal body temperature."],
+      ["100 °C = 212 °F", "Water is close to boiling."],
     ],
     quizzes: [
       {
@@ -225,6 +231,11 @@ const lessons = [
         prompt: "If the weather is 30 °C, what does that mean?",
         options: ["It is warm or hot", "It is very heavy", "It is far away"],
         answer: "It is warm or hot",
+      },
+      {
+        prompt: "What is 0 °C in Fahrenheit?",
+        options: ["0 °F", "32 °F", "100 °F"],
+        answer: "32 °F",
       },
     ],
   },
@@ -545,19 +556,27 @@ const zhLessons = {
   },
   temperature: {
     name: "温度",
-    hint: "摄氏度",
+    hint: "摄氏度、华氏度",
     title: "温度单位",
     question: "怎样描述冷和热？",
     intro:
-      "温度告诉我们冷、暖、热。生活中常用摄氏度。水在 0 °C 附近结冰，人体体温大约是 37 °C。",
+      "温度告诉我们冷、暖、热。生活中常用摄氏度和华氏度。水在 0 °C 或 32 °F 结冰，人体体温大约是 37 °C 或 98.6 °F。",
     mission:
       "当一名天气播报员：5 °C 早晨要穿暖，25 °C 很舒服，35 °C 就很热。",
-    units: [{ label: "摄氏度 °C", value: 1 }],
+    units: [
+      { label: "摄氏度 °C", value: 1 },
+      {
+        label: "华氏度 °F",
+        value: 1,
+        toBase: (amount) => ((amount - 32) * 5) / 9,
+        fromBase: (amount) => (amount * 9) / 5 + 32,
+      },
+    ],
     examples: [
-      ["0 °C", "水接近结冰。"],
+      ["0 °C = 32 °F", "水接近结冰。"],
       ["25 °C", "舒服的室温。"],
-      ["37 °C", "大约是正常体温。"],
-      ["100 °C", "水接近沸腾。"],
+      ["37 °C = 98.6 °F", "大约是正常体温。"],
+      ["100 °C = 212 °F", "水接近沸腾。"],
     ],
     quizzes: [
       {
@@ -569,6 +588,11 @@ const zhLessons = {
         prompt: "天气是 30 °C，是什么意思？",
         options: ["天气较热", "东西很重", "距离很远"],
         answer: "天气较热",
+      },
+      {
+        prompt: "0 °C 等于多少 °F？",
+        options: ["0 °F", "32 °F", "100 °F"],
+        answer: "32 °F",
       },
     ],
   },
@@ -696,8 +720,8 @@ const zhLessons = {
 
 const uiText = {
   en: {
-    pageTitle: "Unit Lab for Kids",
-    brand: "Unit Lab",
+    pageTitle: "Special for Anna",
+    brand: "Special for Anna",
     tagline: "Look, convert, practice",
     today: "Today's Lesson",
     score: "Score",
@@ -718,8 +742,8 @@ const uiText = {
     locale: "en-US",
   },
   zh: {
-    pageTitle: "儿童单位小课堂",
-    brand: "单位小课堂",
+    pageTitle: "Special for Anna",
+    brand: "Special for Anna",
     tagline: "看一看，换一换，练一练",
     today: "今天学习",
     score: "得分",
@@ -821,6 +845,22 @@ function renderTabs() {
 }
 
 function renderScene(lesson) {
+  const lessonImages = {
+    length: "assets/lessons/length.png",
+    weight: "assets/lessons/weight.png",
+    capacity: "assets/lessons/capacity.png",
+    time: "assets/lessons/time.png",
+    temperature: "assets/lessons/temperature.png",
+    area: "assets/lessons/area.png",
+    storage: "assets/lessons/storage.png",
+    speed: "assets/lessons/speed.png",
+  };
+
+  if (lessonImages[lesson.id]) {
+    sceneArt.innerHTML = `<img class="scene-image" src="${lessonImages[lesson.id]}" alt="">`;
+    return;
+  }
+
   const color = lesson.color;
   const scenes = {
     length: `
