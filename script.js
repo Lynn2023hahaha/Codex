@@ -57,13 +57,13 @@ const lessons = [
     units: [
       { label: "gram g", value: 1 },
       { label: "kilogram kg", value: 1000 },
-      { label: "metric ton t", value: 1000000 },
+      { label: "t tonne", value: 1000000 },
     ],
     examples: [
       ["1 g", "About the weight of a paper clip."],
       ["500 g", "About the weight of a water bottle."],
       ["1 kg", "The same as 1000 grams."],
-      ["1 t", "One metric ton is the same as 1000 kilograms."],
+      ["1 t", "One tonne, also called a metric ton, is the same as 1000 kilograms."],
     ],
     quizzes: [
       {
@@ -75,6 +75,11 @@ const lessons = [
         prompt: "How many grams are in 1 kilogram?",
         options: ["10 grams", "100 grams", "1000 grams"],
         answer: "1000 grams",
+      },
+      {
+        prompt: "How many kilograms are in 1 tonne (t)?",
+        options: ["100 kilograms", "1000 kilograms", "10,000 kilograms"],
+        answer: "1000 kilograms",
       },
     ],
   },
@@ -325,8 +330,8 @@ const lessons = [
       "Be a race coach: compare a car's speed in km/h with a runner's speed in m/s.",
     color: "#0f9fb4",
     units: [
-      { label: "meter per second m/s", value: 1 },
-      { label: "kilometer per hour km/h", value: 0.2777777777777778 },
+      { label: "m/s", value: 1 },
+      { label: "km/h", value: 0.2777777777777778 },
     ],
     examples: [
       ["1 km/h", "The same as about 0.2778 m/s."],
@@ -425,6 +430,11 @@ const zhLessons = {
         prompt: "1 千克等于多少克？",
         options: ["10 克", "100 克", "1000 克"],
         answer: "1000 克",
+      },
+      {
+        prompt: "1 吨 t 等于多少千克？",
+        options: ["100 千克", "1000 千克", "10,000 千克"],
+        answer: "1000 千克",
       },
     ],
   },
@@ -655,8 +665,8 @@ const zhLessons = {
     mission:
       "当一名比赛教练：用 km/h 比较汽车速度，用 m/s 比较跑步速度。",
     units: [
-      { label: "米每秒 m/s", value: 1 },
-      { label: "千米每小时 km/h", value: 0.2777777777777778 },
+      { label: "m/s", value: 1 },
+      { label: "km/h", value: 0.2777777777777778 },
     ],
     examples: [
       ["1 km/h", "大约等于 0.2778 m/s。"],
@@ -700,8 +710,11 @@ const uiText = {
     practiceTitle: "Quick Practice",
     practiceHelp: "Pick the best answer.",
     next: "Next Question",
+    tryAgain: "Try Again",
     correct: "Correct. That unit fits the situation.",
     wrong: "Good try. The correct answer is:",
+    passed: "All your answers are correct. You passed this lesson.",
+    finished: "You finished this lesson. Try again to get every answer correct.",
     locale: "en-US",
   },
   zh: {
@@ -719,14 +732,18 @@ const uiText = {
     practiceTitle: "小练习",
     practiceHelp: "选出最合适的答案。",
     next: "下一题",
+    tryAgain: "再练一次",
     correct: "答对了。这个单位用得很合适。",
     wrong: "再想想。正确答案是：",
+    passed: "你的答案全都正确，已经过关。",
+    finished: "你已经完成这一课。再练一次可以挑战全对。",
     locale: "zh-CN",
   },
 };
 
 let activeLesson = lessons[0];
 let activeQuizIndex = 0;
+let correctAnswersInLesson = 0;
 let score = 0;
 let currentLang = localStorage.getItem("unitLabLang") || "en";
 
@@ -804,9 +821,6 @@ function renderTabs() {
 }
 
 function renderScene(lesson) {
-  sceneArt.innerHTML = `<img class="scene-image" src="assets/unit-world.png" alt="">`;
-  return;
-
   const color = lesson.color;
   const scenes = {
     length: `
@@ -1029,7 +1043,18 @@ function updateConverter() {
 
 function renderQuiz() {
   const lesson = localizedLesson();
-  const quiz = lesson.quizzes[activeQuizIndex % lesson.quizzes.length];
+  if (activeQuizIndex >= lesson.quizzes.length) {
+    const completionText =
+      correctAnswersInLesson === lesson.quizzes.length ? uiText[currentLang].passed : uiText[currentLang].finished;
+    quizPrompt.textContent = completionText;
+    quizFeedback.textContent = completionText;
+    quizOptions.innerHTML = "";
+    nextQuiz.lastChild.textContent = ` ${uiText[currentLang].tryAgain}`;
+    return;
+  }
+
+  nextQuiz.lastChild.textContent = ` ${uiText[currentLang].next}`;
+  const quiz = lesson.quizzes[activeQuizIndex];
   quizPrompt.textContent = quiz.prompt;
   quizFeedback.textContent = "";
   quizOptions.innerHTML = quiz.options
@@ -1039,7 +1064,7 @@ function renderQuiz() {
 
 function chooseAnswer(button) {
   const lesson = localizedLesson();
-  const quiz = lesson.quizzes[activeQuizIndex % lesson.quizzes.length];
+  const quiz = lesson.quizzes[activeQuizIndex];
   const buttons = [...quizOptions.querySelectorAll("button")];
   buttons.forEach((item) => {
     item.disabled = true;
@@ -1048,6 +1073,7 @@ function chooseAnswer(button) {
 
   if (button.textContent === quiz.answer) {
     score += 10;
+    correctAnswersInLesson += 1;
     scoreValue.textContent = score;
     quizFeedback.textContent = uiText[currentLang].correct;
   } else {
@@ -1061,6 +1087,7 @@ unitTabs.addEventListener("click", (event) => {
   if (!button) return;
   activeLesson = lessons.find((lesson) => lesson.id === button.dataset.id);
   activeQuizIndex = 0;
+  correctAnswersInLesson = 0;
   renderLesson();
 });
 
@@ -1073,6 +1100,7 @@ languageButtons.forEach((button) => {
     currentLang = button.dataset.lang;
     localStorage.setItem("unitLabLang", currentLang);
     activeQuizIndex = 0;
+    correctAnswersInLesson = 0;
     renderLesson();
   });
 });
@@ -1084,6 +1112,12 @@ quizOptions.addEventListener("click", (event) => {
 });
 
 nextQuiz.addEventListener("click", () => {
+  if (activeQuizIndex >= localizedLesson().quizzes.length) {
+    activeQuizIndex = 0;
+    correctAnswersInLesson = 0;
+    renderQuiz();
+    return;
+  }
   activeQuizIndex += 1;
   renderQuiz();
 });
